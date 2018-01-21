@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app='Mytinerary'>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- JS LINKS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js">
+    </script>
+    <script type="text/javascript" src='app.js'></script>
+    <title>Mytinerary</title>
+  </head>
+  <body ng-controller='MainController as ctrl'>
+    {{ctrl.test}}
+    <p>{{ ctrl.user.username }}!</p>
+
+
+    <!-- <form ng-submit="ctrl.login(userPass)">
+      <input type="text" ng-model="userPass.username" placeholder="username"/>
+      <input type="password" ng-model="userPass.password" placeholder="password"/>
+      <input type="submit"/>
+    </form> -->
+
+    <h4 ng-click="ctrl.getUsers()"> Click to see Users</h4>
+    {{ctrl.error}}
+    <div ng-repeat="user in ctrl.users">
+      <h1>{{user.username}}</h1>
+    </div>
+
+    <form class="submitAnsForm" ng-submit="ctrl.createUser(userPass)">
+			<input class="textField signUp" type="text" ng-model="userPass.username" placeholder=" username" required autofocus/>
+			<input class="textField signUp" type="password" ng-model="userPass.password" placeholder=" password" required/>
+			<input class="submitBtn" type="submit"/>
+		</form>
+
+    <p ng-click="ctrl.logout()"> Log Out</p>
+  </body>
+</html>
