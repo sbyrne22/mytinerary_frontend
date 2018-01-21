@@ -34,11 +34,12 @@ this.createUser = (userPass) => {
 	 url: this.url + '/users',
 	 data: { user: { username: userPass.username, password: userPass.password }},
  }).then(response => {
-
+   console.log(response);
 	 this.user = response.data.user;
+   localStorage.setItem("token", JSON.stringify(response.data.token));
 	 this.formData = {username: this.user.username}
  }).catch(reject => {
-		this.err = 'Username Already Exists';
+		this.error = 'Username Already Exists';
 	});
 };
 
