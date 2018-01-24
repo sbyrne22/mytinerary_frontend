@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans|Roboto');
+
+/* font-family: 'Lato', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto', sans-serif; */
+.red {
+  /* color: #F76F5D; */
+  color: #E56742;
+}
+.clickable:hover {
+  cursor: pointer;
+}
+.underline {
+  text-decoration: underline #E56742;
+}
+* {
+  font-family: 'Roboto', sans-serif;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+body {
+  /* border: 1px solid blue; */
+  margin: 0 auto;
+}
+header {
+  /* right: 0; */
+  /* border: 1px solid red; */
+  border-top: 4px solid rgba(40, 40, 40, 1);
+  /* border-bottom: 5px solid rgba(40, 40, 40, 1); */
+  box-sizing: border-box;
+  background: rgba(50, 50, 50, .9);
+  position: fixed;
+  width: 100%;
+  height: 30px;
+  margin: 0 auto;
+  /* max-width: 1000px; */
+  /* z-index: 10; */
+  top: 0;
+  /* padding-top: 5px; */
+  box-sizing: border-box;
+  /* overflow: hidden; */
+}
+.logo {
+  /* margin-left: 5px; */
+  font-family: 'Lato', sans-serif;
+  font-size: 20px;
+  background: rgba(40, 40, 40, 1);
+  color: #FFFFFF;
+  padding: 5px;
+  box-sizing: border-box;
+  border-radius: 0 0 10px 10px;
+  height: 40px;
+}
+.logo:hover {
+  cursor: pointer;
+  height: 43px;
+  padding: 8px 5px 5px 5px;
+}
+.logoBox {
+  margin-left: 5%;
+}
+.navLinks {
+  margin-right: 10px;
+  margin-top: 2px;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+}
+.navLinks a {
+  color: #FFFFFF;
+}
+/* .navLinks:hover {
+  cursor: pointer;
+} */
+.navItem {
+  margin-left: 10px;
+}
+
+main {
+  border: 1px solid brown;
+  margin-top: 50px;
+  margin: 50px auto;
+  padding: 0 1% 0 1%;
+  max-width: 1000px;
+}
+.container {
+  margin: 0 auto;
+  /* border: 1px solid black; */
+  width: 90%;
+  max-width: 1000px;
+}
+.loginBox {
+  border-bottom: 10px solid #000000;
+  text-align: center;
+}
+
+/* Flex Boxes */
+.flexSB {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

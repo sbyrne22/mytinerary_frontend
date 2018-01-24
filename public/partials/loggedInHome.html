@@ -1,0 +1,22 @@
+Logged In Home
+<p ng-click="ctrl.logout()"> Log Out</p>
+
+<h4 ng-click="ctrl.getUsers()"> Click to see Users</h4>
+{{ctrl.error}}
+<div ng-repeat="user in ctrl.users">
+  <h1>{{user.username}}</h1>
+</div>
+
+<div class="button clickable" ng-click="ctrl.openItinForm()">
+  Create Itinerary
+</div>
+<div ng-if="ctrl.itineraryReady == true" class="createItinForm">
+  <form class="" ng-submit="ctrl.createItinerary(itineraryData)">
+    <input class="" type="text" ng-model="itineraryData.title" placeholder=" Title" required autofocus/>
+    <input class="" type="text" ng-model="itineraryData.date_start" placeholder=" start date" required autofocus/>
+    <input class="" type="text" ng-model="itineraryData.time_start" placeholder=" start date" required autofocus/>
+    <input class="" type="text" ng-model="itineraryData.date_end" placeholder=" end date" required autofocus/>
+    <input class="" type="text" ng-model="itineraryData.time_end" placeholder=" end date" required autofocus/>
+    <input class="" type="submit"/>
+  </form>
+</div>

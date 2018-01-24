@@ -10,28 +10,25 @@
     <title>Mytinerary</title>
   </head>
   <body ng-controller='MainController as ctrl'>
-    {{ctrl.test}}
-    <p>{{ ctrl.user.username }}!</p>
+    <header class="flexSB">
+      <div class="logoBox">
+        <div class="logo" href="index.html">My<span class="red">t</span><span class="">inerary<span></div>
+      </div>
+      <div class="navLinks">
+        <a class="navItem" href="#">About</a>
+        <a ng-if="ctrl.loggedIn == true" class="navItem">Hello {{ctrl.user.username}}</a>
+      </div>
+    </header>
 
+    <main>
+      <div class="container" ng-include="'partials/unloggedHome.html'" ng-if="ctrl.loggedIn == false">
+      </div>
 
-    <!-- <form ng-submit="ctrl.login(userPass)">
-      <input type="text" ng-model="userPass.username" placeholder="username"/>
-      <input type="password" ng-model="userPass.password" placeholder="password"/>
-      <input type="submit"/>
-    </form> -->
+      <div class="container" ng-include="'partials/loggedInHome.html'" ng-if="ctrl.loggedIn == true">
 
-    <h4 ng-click="ctrl.getUsers()"> Click to see Users</h4>
-    {{ctrl.error}}
-    <div ng-repeat="user in ctrl.users">
-      <h1>{{user.username}}</h1>
-    </div>
+      </div>
+    </main>
 
-    <form class="submitAnsForm" ng-submit="ctrl.createUser(userPass)">
-			<input class="textField signUp" type="text" ng-model="userPass.username" placeholder=" username" required autofocus/>
-			<input class="textField signUp" type="password" ng-model="userPass.password" placeholder=" password" required/>
-			<input class="submitBtn" type="submit"/>
-		</form>
-
-    <p ng-click="ctrl.logout()"> Log Out</p>
+    <footer></footer>
   </body>
 </html>
