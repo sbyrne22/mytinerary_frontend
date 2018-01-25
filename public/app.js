@@ -6,10 +6,13 @@ app.controller('MainController', ['$http', function($http) {
   this.url = "http://localhost:3000";
   this.user = {};
   this.users = [];
+  this.myTineraries = [];
   this.error = "";
   this.loggedIn = false;
   this.LoginBox = true;
   this.itineraryReady = false;
+  this.date = Date();
+  console.log('Date', this.date);
 
 
 
@@ -23,12 +26,9 @@ this.login = (userLoginData) => {
  }).then(response => {
    console.log(response);
 		 this.user = response.data.user;
-
-     // console.log('loggedIn ', this.loggedIn);
 		 localStorage.setItem("token", JSON.stringify(response.data.token));
-		 this.formData = {username: this.user.username}
-     console.log(this.formData.username);
-     if (this.formData.username !== null) {
+     console.log(this.user.username);
+     if (this.user.username !== null) {
        this.loggedIn = true;
      }
  }).catch(reject => {
@@ -50,7 +50,10 @@ this.createUser = (userRegisterData) => {
    this.loggedIn = true;
    // console.log('loggedIn ', this.loggedIn);
    localStorage.setItem("token", JSON.stringify(response.data.token));
-	 this.formData = {username: this.user.username}
+   console.log(this.user.username);
+   if (this.user.username !== null) {
+     this.loggedIn = true;
+   }
  }).catch(reject => {
 		this.error = 'Username Already Exists';
 	});
@@ -83,29 +86,24 @@ this.loggedIn = false;
 //END Authentication----------------
 
 // Itineraries----------------------
-this.getMytineraries = () => {
+// this.getMytineraries = () => {
  $http({
 	 // url: this.herokuUrl + '/users',
 	 url: this.url + '/users/' + this.user.id + '/itineraries',
 	 method: 'GET',
-	 headers: {
-		Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
-	}
+
  }).then(response => {
    console.log(response);
-
-	 if (response.data.status == 401) {
-			this.error = "Unauthorized";
-		} else {
-			this.users = response.data;
-		}
+	 this.myTineraries = response.data;
  });
-};
+// };
 
 this.createMytinerary = (itineraryData) => {
 
-  itineraryData.intin_start =
-
+  itineraryData.intin_start = itineraryData.date_start + ' ' + itineraryData.time_start;
+  console.log('itin start ',itineraryData.intin_start);
+  itineraryData.intin_end = itineraryData.date_end + ' ' + itineraryData.time_end;
+  console.log('itin end ',itineraryData.intin_end);
 	$http({
 	 method: 'POST',
 	 // url: this.herokuUrl + '/users',
@@ -113,13 +111,9 @@ this.createMytinerary = (itineraryData) => {
 	 data: { itinerary: { title: itineraryData.title, intin_start: itineraryData.intin_start, intin_end: itineraryData.intin_end}},
  }).then(response => {
    console.log(response);
-	 this.user = response.data.user;
-   this.loggedIn = true;
-   // console.log('loggedIn ', this.loggedIn);
-   localStorage.setItem("token", JSON.stringify(response.data.token));
-	 this.formData = {username: this.user.username}
+	 this.myTineraries.push(response.data);
  }).catch(reject => {
-		this.error = 'Username Already Exists';
+		this.error = 'error';
 	});
 };
 
