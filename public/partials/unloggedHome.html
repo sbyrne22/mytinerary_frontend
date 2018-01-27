@@ -5,6 +5,7 @@ Unlogged User
 <div class="loginBox">
   <div ng-if="ctrl.LoginBox == true">
     <h2>Login</h2>
+    <p>{{ctrl.error}}</p>
     <form ng-submit="ctrl.login(userLoginData)">
       <input type="text" ng-model="userLoginData.username" placeholder="username"/>
       <input type="password" ng-model="userLoginData.password" placeholder="password"/>
@@ -16,6 +17,7 @@ Unlogged User
 
   <div ng-if="ctrl.LoginBox == false">
     <h2>Create an Account</h2>
+    <p>{{ctrl.error}}</p>
     <form class="" ng-submit="ctrl.createUser(userRegisterData)">
       <input class="" type="text" ng-model="userRegisterData.username" placeholder=" username" required autofocus/>
       <input class="" type="password" ng-model="userRegisterData.password" placeholder=" password" required/>

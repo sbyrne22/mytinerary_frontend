@@ -101,3 +101,66 @@ main {
   flex-direction: row;
   justify-content: space-between;
 }
+.itinBox {
+  /* background: #FFFFFF; */
+  background: rgba(50, 50, 50, .2);
+  /* border: 1px solid purple; */
+  width: 200px;
+  height: 100px;
+  margin: 2px 2px 5px 2px;
+  /* padding: 5px; */
+  box-shadow: 2px 7px 15px #888888;
+}
+.itinBox:hover {
+  cursor: pointer;
+}
+.itinBox:active {
+  box-shadow: none;
+  width: 198px;
+  height: 99px;
+  margin: 2px 3px 6px 3px;
+}
+.itin_Title_Box {
+  /* color: #FFFFFF; */
+  text-align: center;
+  /* background: rgba(40, 40, 40, 1); */
+  background: #E56742;
+  padding: 1px;
+  border-bottom: 2px solid #000000;
+  /* border-bottom: 2px solid #E56742; */
+}
+.showMytins {
+  max-width: 800px;
+  max-height: 410px;
+  border: 1px solid black;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+.createItin {
+  border: 1px solid purple;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 100px;
+}
+.createBtn {
+  font-size: 12px;
+  margin: 0 auto;
+  /* background: green; */
+  width: 90px;
+  height: 18px;
+  border-bottom: 1px solid #000000;
+  box-sizing: border-box;
+  padding: 1px;
+}
+.inputBox {
+  display: inline-block;
+}
+.viewItin {
+  margin: 0 auto;
+  border: 1px solid black;
+  padding: 5px 10px 5px 10px;
+}

@@ -11,6 +11,9 @@ app.controller('MainController', ['$http', function($http) {
   this.loggedIn = false;
   this.LoginBox = true;
   this.itineraryReady = false;
+  this.displayItin = false
+  this.myTin = null;
+  this.itineraryData = '';
   this.date = Date();
   console.log('Date', this.date);
 
@@ -18,7 +21,6 @@ app.controller('MainController', ['$http', function($http) {
 
   //Authentication--------------
 this.login = (userLoginData) => {
-
 	$http({
 	 method: 'POST',
 	 url: this.url + '/users/login',
@@ -30,6 +32,7 @@ this.login = (userLoginData) => {
      console.log(this.user.username);
      if (this.user.username !== null) {
        this.loggedIn = true;
+       this.getMytineraries();
      }
  }).catch(reject => {
 		this.error = 'Username or Password Incorrect';
@@ -47,12 +50,13 @@ this.createUser = (userRegisterData) => {
  }).then(response => {
    console.log(response);
 	 this.user = response.data.user;
-   this.loggedIn = true;
+   // this.loggedIn = true;
    // console.log('loggedIn ', this.loggedIn);
    localStorage.setItem("token", JSON.stringify(response.data.token));
    console.log(this.user.username);
    if (this.user.username !== null) {
      this.loggedIn = true;
+     this.getMytineraries();
    }
  }).catch(reject => {
 		this.error = 'Username Already Exists';
@@ -86,7 +90,7 @@ this.loggedIn = false;
 //END Authentication----------------
 
 // Itineraries----------------------
-// this.getMytineraries = () => {
+this.getMytineraries = () => {
  $http({
 	 // url: this.herokuUrl + '/users',
 	 url: this.url + '/users/' + this.user.id + '/itineraries',
@@ -96,13 +100,14 @@ this.loggedIn = false;
    console.log(response);
 	 this.myTineraries = response.data;
  });
-// };
+};
 
 this.createMytinerary = (itineraryData) => {
-
-  itineraryData.intin_start = itineraryData.date_start + ' ' + itineraryData.time_start;
+  itineraryData.time_end = '12:00'
+  // console.log('Date Start: ', itineraryData.date_start);
+  itineraryData.intin_start = itineraryData.year_start + '-' + itineraryData.month_start + '-' + itineraryData.day_start + ' ' + itineraryData.time_start;
   console.log('itin start ',itineraryData.intin_start);
-  itineraryData.intin_end = itineraryData.date_end + ' ' + itineraryData.time_end;
+  itineraryData.intin_end = itineraryData.year_end + '-' + itineraryData.month_end + '-' + itineraryData.day_end + ' ' + itineraryData.time_end;
   console.log('itin end ',itineraryData.intin_end);
 	$http({
 	 method: 'POST',
@@ -117,6 +122,21 @@ this.createMytinerary = (itineraryData) => {
 	});
 };
 
+this.deleteMytinerary = (itin_id) => {
+  // /users/:user_id/itineraries/:id
+  $http({
+	 method: 'DELETE',
+	 // url: this.herokuUrl + '/users',
+	 url: this.url + '/users/' + this.user.id + '/itineraries/' + itin_id
+ }).then(response => {
+   console.log(response);
+   this.myTineraries.splice(this.myTineraries.itin_id, 1);
+   this.showItin(myTinerary)
+ }).catch(reject => {
+		this.error = 'error';
+	});
+};
+
 // End Itineraries------------------
 
 // Functions------------------------
@@ -125,6 +145,18 @@ this.createMytinerary = (itineraryData) => {
       this.itineraryReady = false
     } else {
       this.itineraryReady = true
+    }
+  }
+
+  this.showItin = (myTinerary) => {
+    console.log('show Itin');
+    this.myTin = myTinerary
+    this.myTin.time = myTinerary
+    // this.myTin_id = myTinerary.id
+    if (this.displayItin == true) {
+      this.displayItin = false
+    } else {
+      this.displayItin = true
     }
   }
 

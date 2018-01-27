@@ -1,0 +1,18 @@
+<div class="viewItin">
+  {{ctrl.myTin.title}}
+  <!-- {{ctrl.myTin.intin_start | date[:format[:timezone[:locale]]] }} -->
+
+
+  <p>Starts:</p> {{ctrl.myTin.intin_start}}<br>
+  <p>Ends:</p> {{ctrl.myTin.intin_end}}<br><br>
+
+
+  {{ctrl.myTin.id}}<br>
+  <!-- {{ctrl.myTin}}<br> -->
+</div>
+
+<form class="" ng-submit="ctrl.createUser(userRegisterData)">
+  <input class="" type="text" ng-model="userRegisterData.username" placeholder=" username" required autofocus/>
+  <input class="" type="password" ng-model="userRegisterData.password" placeholder=" password" required/>
+  <input class="" type="submit"/>
+</form>
