@@ -191,20 +191,29 @@ Logged In Home
   showMytins
 </div> -->
 <div class="showMytins">
-  <div class="itinBox" ng-repeat="myTinerary in ctrl.myTineraries" ng-click="ctrl.showItin(myTinerary)">
+  <div class="itinBox" ng-repeat="myTinerary in ctrl.myTineraries" >
     <div class="itin_Title_Box">
       {{myTinerary.title}}
-      {{myTinerary.id}}
-      <p ng-click="ctrl.deleteMytinerary(myTinerary.id)">DELETE</p>
+      <p class="dltItin"ng-click="ctrl.dltItin_Model(myTinerary.id)">DELETE</p>
     </div>
-    Starts:
-    {{myTinerary.intin_start}}<br>
+    <div class="" ng-click="ctrl.showItin(myTinerary)">
+      Starts:
+      {{myTinerary.intin_start | date:short}}<br>
 
-    Ends:
-    {{myTinerary.intin_end}}
-    <!-- {{myTinerary.id}} -->
+      Ends:
+      {{myTinerary.intin_end | date:short}}
+    </div>
   </div>
 </div>
+
+<div class="dltModel" ng-if="ctrl.dltModel == true">
+  <h4>Are You Sure?</h4>
+  <div class="">
+    <p ng-click="ctrl.confirmDelete()">Yes, Do it</p>
+    <p ng-click="ctrl.dltModel = false">No, Wait!</p>
+  </div>
+</div>
+
 
 <div class="" ng-if="ctrl.displayItin == true" ng-include="'partials/viewItin.html'">
 </div>

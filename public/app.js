@@ -14,6 +14,7 @@ app.controller('MainController', ['$http', function($http) {
   this.displayItin = false
   this.myTin = null;
   this.itineraryData = '';
+  this.dltModel = false
   this.date = Date();
   console.log('Date', this.date);
 
@@ -130,7 +131,11 @@ this.deleteMytinerary = (itin_id) => {
 	 url: this.url + '/users/' + this.user.id + '/itineraries/' + itin_id
  }).then(response => {
    console.log(response);
-   this.myTineraries.splice(this.myTineraries.itin_id, 1);
+
+   const itinDelete = this.myTineraries.findIndex(m => m.id === itin_id);
+   // console.log('itin to be spliced ', itinDelete);
+   this.myTineraries.splice(itinDelete, 1);
+   // console.log('itin to be spliced ', this.myTineraries.itin_id);
    this.showItin(myTinerary)
  }).catch(reject => {
 		this.error = 'error';
@@ -159,6 +164,16 @@ this.deleteMytinerary = (itin_id) => {
       this.displayItin = true
     }
   }
+
+  this.dltItin_Model = (myTin_id) => {
+    console.log('myTin_id ', myTin_id);
+    this.dltModel = true
+    this.confirmDelete = () => {
+      this.deleteMytinerary(myTin_id)
+      this.displayItin = false
+      this.dltModel = false
+    }
+  };
 
 // End Functions--------------------
 }]);

@@ -1,6 +1,6 @@
 <div class="viewItin">
   {{ctrl.myTin.title}}
-  <!-- {{ctrl.myTin.intin_start | date[:format[:timezone[:locale]]] }} -->
+  {{ctrl.myTin.intin_start | date:short }}
 
 
   <p>Starts:</p> {{ctrl.myTin.intin_start}}<br>
