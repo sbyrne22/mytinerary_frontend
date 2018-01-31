@@ -25,8 +25,8 @@ app.controller('MainController', ['$http', function($http) {
 this.login = (userLoginData) => {
 	$http({
 	 method: 'POST',
-   url: this.herokuUrl + '/users/login',
-	 // url: this.url + '/users/login',
+   // url: this.herokuUrl + '/users/login',
+	 url: this.url + '/users/login',
 	 data: { user: { username: userLoginData.username, password: userLoginData.password }},
  }).then(response => {
    console.log(response);
@@ -47,8 +47,8 @@ this.createUser = (userRegisterData) => {
 
 	$http({
 	 method: 'POST',
-	 url: this.herokuUrl + '/users',
-	 // url: this.url + '/users',
+	 // url: this.herokuUrl + '/users',
+	 url: this.url + '/users',
 	 data: { user: { username: userRegisterData.username, password: userRegisterData.password }},
  }).then(response => {
    console.log(response);
@@ -68,8 +68,8 @@ this.createUser = (userRegisterData) => {
 
 this.getUsers = () => {
  $http({
-	 url: this.herokuUrl + '/users',
-	 // url: this.url + '/users',
+	 // url: this.herokuUrl + '/users',
+	 url: this.url + '/users',
 	 method: 'GET',
 	 headers: {
 		Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('token'))
@@ -95,8 +95,8 @@ this.loggedIn = false;
 // Itineraries----------------------
 this.getMytineraries = () => {
  $http({
-	 url: this.herokuUrl + '/users/' + this.user.id + '/itineraries',
-	 // url: this.url + '/users/' + this.user.id + '/itineraries',
+	 // url: this.herokuUrl + '/users/' + this.user.id + '/itineraries',
+	 url: this.url + '/users/' + this.user.id + '/itineraries',
 	 method: 'GET',
 
  }).then(response => {
@@ -114,8 +114,8 @@ this.createMytinerary = (itineraryData) => {
   console.log('itin end ',itineraryData.intin_end);
 	$http({
 	 method: 'POST',
-	 url: this.herokuUrl + '/users/' + this.user.id + '/itineraries',
-	 // url: this.url + '/users/' + this.user.id + '/itineraries',
+	 // url: this.herokuUrl + '/users/' + this.user.id + '/itineraries',
+	 url: this.url + '/users/' + this.user.id + '/itineraries',
 	 data: { itinerary: { title: itineraryData.title, intin_start: itineraryData.intin_start, intin_end: itineraryData.intin_end}},
  }).then(response => {
    console.log(response);
@@ -129,8 +129,8 @@ this.deleteMytinerary = (itin_id) => {
   // /users/:user_id/itineraries/:id
   $http({
 	 method: 'DELETE',
-	 url: this.herokuUrl + '/users/' + this.user.id + '/itineraries/' + itin_id
-	 // url: this.url + '/users/' + this.user.id + '/itineraries/' + itin_id
+	 // url: this.herokuUrl + '/users/' + this.user.id + '/itineraries/' + itin_id
+	 url: this.url + '/users/' + this.user.id + '/itineraries/' + itin_id
  }).then(response => {
    console.log(response);
 
